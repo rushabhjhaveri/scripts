@@ -2,11 +2,9 @@
 
 echo Delete downloaded email attachments which have since been uploaded to Box. 
 SET "sourcedir=%USERPROFILE%\Downloads"
+rem SETLOCAL ENABLEDELAYEDEXPANSION
 
-for /f "delims=" %%i in ('dir /b /s /a-d %sourcedir% ^| findstr /i /r /c:"^.*-[A-Za-z][A-Za-z][0-9][0-9][0-9][0-9]-.*.jpg$" 
-/c:"^.*-[A-Za-z][A-Za-z][A-Za-z][0-9][0-9]-.*.jpg$" /c:"^.*-[A-Za-z][A-Za-z][A-Za-z][0-9][0-9][0-9]-.*.jpg$" /c:"^.*-[A-Za-z][A-Za-z][A-Za-z][0-9]-.*.jpg$"
-/c:"^.*-[A-Za-z][A-Za-z][A-Za-z][0-9][0-9]-.*.jpg$" 
-/c:"^.*-[A-Za-z][A-Za-z][0-9][0-9][0-9][0-9]-.*.png$" /c:"^.*-[A-Za-z][A-Za-z][A-Za-z][0-9][0-9]-.*.png$" /c:"^.*-[A-Za-z][A-Za-z][A-Za-z][0-9][0-9][0-9]-.*.png$" 
-/c:"^.*-[A-Za-z][A-Za-z][A-Za-z][0-9]-.*.png$" /c:"^.*-[A-Za-z][A-Za-z][A-Za-z][0-9][0-9]-.*.png$"') do del "%%i"
-
+rem Including the /s switch prints the full pathname, which results in findstr [rem'd below] failing. 
+rem for /f "delims= " %%i in ('dir /b /s /a-d "%sourcedir%" ^| findstr /i "^[1].*-[A-Z].*-.*.[jpg|png]"') do echo del %%i 
+for /f "delims= " %%i in ('dir /b /a-d "%sourcedir%" ^| findstr /i "^[1].*-[A-Z].*-.*.[jpg|png]"') do echo del %%i 
 echo Done! 
