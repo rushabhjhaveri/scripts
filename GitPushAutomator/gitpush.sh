@@ -15,5 +15,3 @@ echo "Commit Branch:"
 read branch 
 
 git push origin $branch 
-
-read 
