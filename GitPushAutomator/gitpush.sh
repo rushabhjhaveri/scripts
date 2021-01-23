@@ -8,10 +8,10 @@ echo "Commit message:"
 
 read commit_message 
 
-git commit -m $commit_message 
+git commit -m "$commit_message" 
 
 echo "Commit Branch:" 
 
 read branch 
 
-git push origin $branch 
+git push origin "$branch" 
