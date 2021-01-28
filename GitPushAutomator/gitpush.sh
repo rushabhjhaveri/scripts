@@ -24,9 +24,9 @@ function pushChanges(){
 } 
 
 function deploy(){
-    $(addChanges) 
-    $(commitChanges) 
-    $(pushChanges)
+    addChanges 
+    commitChanges
+    pushChanges
 }
 
 deploy
