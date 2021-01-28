@@ -1,17 +1,32 @@
 #!/bin/bash 
 # Simple utility script to automate git add-commit-push 
 
-# Todo: add functionality to commit specific files 
-git add . 
 
-echo "Commit message:" 
+function addChanges(){
+    # TODO: add functionality to commit specific files 
+    git add .
+}
+ 
+function commitChanges(){
+    echo "Commit message:" 
+    
+    read commit_message 
+    
+    git commit -m "$commit_message" 
+}
 
-read commit_message 
+function pushChanges(){
+    echo "Commit Branch:" 
 
-git commit -m "$commit_message" 
+    read branch 
 
-echo "Commit Branch:" 
+    git push origin "$branch" 
+} 
 
-read branch 
+function deploy(){
+    $(addChanges) 
+    $(commitChanges) 
+    $(pushChanges)
+}
 
-git push origin "$branch" 
+deploy
